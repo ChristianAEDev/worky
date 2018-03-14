@@ -1,0 +1,17 @@
+version: '2'
+ 
+# Data volume for the database
+volumes:
+ worky-mariadb-volume-dev:
+
+services:
+  mariadb: 
+    container_name: worky-mariadb-dev
+    image: mariadb
+    volumes:
+      - worky-mariadb-volume-dev:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    network_mode: bridge

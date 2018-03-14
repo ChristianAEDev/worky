@@ -1,0 +1,1 @@
+docker run -it --rm -v ${PWD}/changelogs:/changelogs --link=worky-mariadb-dev christianaedev/docker_liquibase_mysql --changeLogFile=/changelogs/changelog-master.xml --username=root --password=my-secret-pw --url="jdbc:mysql://worky-mariadb-dev:3306/worky?createDatabaseIfNotExist=true" update
