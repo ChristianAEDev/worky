@@ -17,7 +17,8 @@ build-linux:
 	# Copy the frontend build to the output folder	
 	mv client/build $(output-linux)
 	# Build the Go server
-	cd server; go build -o worky
+	cd server && dep ensure
+	cd server && go build -o worky
 	# Copy Go server to output directory
 	mv server/worky $(output-linux)
 	# Compress the output to a release package
@@ -36,7 +37,8 @@ build-windows:
 	# Copy the frontend build to the output folder	
 	mv client/build $(output-windows)
 	# Build the Go server
-	cd server; GOOS=windows GOARCH=386 go build -o worky.exe
+	cd server && dep ensure
+	cd server && GOOS=windows GOARCH=386 go build -o worky.exe
 	# Copy Go server to output directory
 	mv server/worky.exe $(output-windows)
 	# Compress the output to a release package
