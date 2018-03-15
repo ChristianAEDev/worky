@@ -1,4 +1,17 @@
-image: golang
+image: ubuntu
+
+variables:
+  GOVERSION: "1.10"
+
+# Used to install the needed software in the container
+before_script:
+  - cd /opt 
+  - wget https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz
+  - tar zxf go${GOVERSION}.linux-amd64.tar.gz 
+  - rm go${GOVERSION}.linux-amd64.tar.gz
+  - ln -s /opt/go/bin/go /usr/bin/
+  - mkdir $GOPATH
+  - echo "go env"
 
 build:
   script: make build
