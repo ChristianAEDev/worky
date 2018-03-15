@@ -18,6 +18,7 @@ before_script:
   - apt install curl -y
   - apt install make -y
   - apt install build-essential -y
+  - apt install git -y
 # Install Go
   - wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
