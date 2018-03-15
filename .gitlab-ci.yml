@@ -7,6 +7,9 @@ variables:
 
 # Used to install the needed software in the container
 before_script:
+  # This folder is never needed. But for some reason GitLab cd's into it at the end of the build.
+  # If it's not there the whole build fails.
+  - mkdir /builds/christian/worky -p
   - mkdir -p $GO_PATH/src/$PROJECT_PATH
   - cd ..
   - mv worky $GO_PATH/src/$PROJECT_PATH
