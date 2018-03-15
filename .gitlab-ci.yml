@@ -8,11 +8,10 @@ before_script:
   - apt update
   - apt install wget -y
   - cd /opt 
-  - wget https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz
-  - tar zxf go${GOVERSION}.linux-amd64.tar.gz 
-  - rm go${GOVERSION}.linux-amd64.tar.gz
+  - wget https://dl.google.com/go/go$GOVERSION.linux-amd64.tar.gz
+  - tar zxf go$GOVERSION.linux-amd64.tar.gz 
+  - rm go$GOVERSION.linux-amd64.tar.gz
   - ln -s /opt/go/bin/go /usr/bin/
-  - mkdir $GOPATH
   - echo "go env"
 
 build:
