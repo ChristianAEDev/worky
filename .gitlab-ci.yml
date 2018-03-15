@@ -5,6 +5,8 @@ variables:
 
 # Used to install the needed software in the container
 before_script:
+  - apt update
+  - apt install wget
   - cd /opt 
   - wget https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz
   - tar zxf go${GOVERSION}.linux-amd64.tar.gz 
