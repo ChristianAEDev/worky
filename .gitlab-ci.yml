@@ -1,11 +1,15 @@
 image: ubuntu
 
 variables:
-  CI_PROJECT_DIR: "/build/go/src/github.com/ChrisstianAEDev"
-  GOVERSION: "1.10"
+  GO_VERSION: "1.10"
+  GO_PATH: "/build/go"
+  PROJECT_PATH: "/gitlab.com/ChristianAEDev"
 
 # Used to install the needed software in the container
 before_script:
+  - mkdir -p $GO_PATH/src/$PROJECT_PATH
+  - cd ..
+  - mv worky $GO_PATH/src/$PROJECT_PATH
   - pwd 
 # Install all tools needed for the build
   - apt update
@@ -14,10 +18,10 @@ before_script:
   - apt install make -y
   - apt install build-essential -y
 # Install Go
-  - wget https://dl.google.com/go/go$GOVERSION.linux-amd64.tar.gz
+  - wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
   - export GOPATH=/build/go
-  - export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+  - export PATH=$PATH:/usr/local/go/bin:$GO_PATH/bin
   - go version
   - go env
 # Install dep (Go)
