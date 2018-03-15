@@ -11,7 +11,7 @@ build-linux:
 	# Remove all files in the output folder
 	rm -rfv $(output-linux)/*
 	# Install dependencies
-	npm install
+	npm install --prefix client
 	# Build React fontend
 	npm run-script build --prefix client
 	# Copy the frontend build to the output folder	
@@ -32,7 +32,7 @@ build-windows:
 	# Remove all files in the output folder
 	rm -rfv $(output-windows)/*
 	# Install dependencies
-	npm install
+	npm install --prefix client
 	# Build React fontend
 	npm run-script build --prefix client
 	# Copy the frontend build to the output folder	
