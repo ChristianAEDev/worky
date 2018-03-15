@@ -14,8 +14,8 @@ before_script:
 # Install Go
   - wget https://dl.google.com/go/go$GOVERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
-  - export PATH=$PATH:/usr/local/go/bin
   - export GOPATH=/build/go
+  - export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
   - go version
   - go env
 # Install dep (Go)
