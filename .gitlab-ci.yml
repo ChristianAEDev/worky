@@ -19,6 +19,7 @@ before_script:
   - go version
   - go env
 # Install dep (Go)
+  - mkdir $GOPATH/bin
   - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 # Install Nodejs (npm)
   - curl -sL https://deb.nodesource.com/setup_9.x | bash -
