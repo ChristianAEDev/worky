@@ -7,12 +7,10 @@ variables:
 before_script:
   - apt update
   - apt install wget -y
-  - cd /opt 
   - wget https://dl.google.com/go/go$GOVERSION.linux-amd64.tar.gz
-  - tar zxf go$GOVERSION.linux-amd64.tar.gz 
-  - rm go$GOVERSION.linux-amd64.tar.gz
-  - ln -s /opt/go/bin/go /usr/bin/
-  - echo "go env"
+  - tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
+  - export PATH=$PATH:/usr/local/go/bin
+  - go env
 
 build:
   script: make build
