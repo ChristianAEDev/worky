@@ -11,7 +11,6 @@ before_script:
   - cd ..
   - mv worky $GO_PATH/src/$PROJECT_PATH
   - cd $GO_PATH/src/$PROJECT_PATH/worky
-  - pwd 
 # Install all tools needed for the build
   - apt update
   - apt install wget -y
@@ -42,3 +41,7 @@ before_script:
 
 build:
   script: make build
+  artifacts:
+    paths:
+    - $GO_PATH/src/$PROJECT_PATH/worky/output
+    expire_in: 1 month
