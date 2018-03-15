@@ -17,6 +17,8 @@ before_script:
   - export PATH=$PATH:/usr/local/go/bin
   - go version
   - go env
+# Install dep (Go)
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 # Install Nodejs (npm)
   - curl -sL https://deb.nodesource.com/setup_9.x | bash -
   - apt install nodejs -y
