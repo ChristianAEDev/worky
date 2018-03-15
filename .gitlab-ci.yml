@@ -15,6 +15,7 @@ before_script:
   - wget https://dl.google.com/go/go$GOVERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
   - export PATH=$PATH:/usr/local/go/bin
+  - go version
   - go env
 # Install Nodejs (npm)
   - curl -sL https://deb.nodesource.com/setup_9.x | bash -
