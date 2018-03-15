@@ -10,6 +10,7 @@ before_script:
   - mkdir -p $GO_PATH/src/$PROJECT_PATH
   - cd ..
   - mv worky $GO_PATH/src/$PROJECT_PATH
+  - cd $GO_PATH/src/$PROJECT_PATH/worky
   - pwd 
 # Install all tools needed for the build
   - apt update
