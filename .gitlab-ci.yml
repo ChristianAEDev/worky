@@ -1,2 +1,4 @@
+image: golang
+
 build:
   script: make build
