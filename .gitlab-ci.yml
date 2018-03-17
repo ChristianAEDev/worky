@@ -4,6 +4,7 @@ variables:
   GO_VERSION: "1.10"
   GO_PATH: "/build/go"
   PROJECT_PATH: "gitlab.com/ChristianAEDev"
+  GITLAB_WORK_DIR: "/builds/christian/worky"
 
 # Used to install the needed software in the container
 before_script:
@@ -13,7 +14,7 @@ before_script:
   - cd $GO_PATH/src/$PROJECT_PATH/worky
   # We don't really need this folder. But GitLab seems to depend on it as a default folder.
   # So after moving worky into the GOPATH we recreate the folder that the build doesn't fail.
-  - mkdir -p /builds/christian/worky
+  - mkdir -p $GITLAB_WORK_DIR
 # Install all tools needed for the build
   - apt update
   - apt install wget -y
@@ -45,8 +46,11 @@ before_script:
 build:
   script: 
     - make build
+    # Move the the GitLab default build folder. Only from there we can get the artifacts
+    - cp $GO_PATH/src/$PROJECT_PATH/worky/output $GITLAB_WORK_DIR
+    - tree $GITLAB_WORK_DIR
   artifacts:
     expire_in: 6 months
     paths:
-    - $GO_PATH/src/$PROJECT_PATH/worky/output/linux.zip
-    - $GO_PATH/src/$PROJECT_PATH/worky/output/windows.zip
+    - $GITLAB_WORK_DIR/output/linux.zip
+    - $GITLAB_WORK_DIR/output/windows.zip
