@@ -7,15 +7,24 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
+
+func init() {
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Panicf("Fatal error config file: %s \n", err)
+	}
+
+	viper.SetDefault("port", "8080")
+}
 
 func main() {
 	log.Info("Starting...")
 
-	port := "9090"
-
 	router := mux.NewRouter()
-
 	api := router.PathPrefix("/api/v1").Subrouter()
 
 	// Register the routes Rest API
@@ -27,7 +36,8 @@ func main() {
 	methods := []string{"GET", "POST", "PUT", "DELETE"}
 	headers := []string{"Content-Type"}
 
-	log.Infof("Started on port %v\n", port)
+	port := viper.GetString("port")
+	log.Infof("Started on port %v", port)
 	// Startup the endpoint
 	http.ListenAndServe(":"+port,
 		handlers.CORS(handlers.AllowedMethods(methods), handlers.AllowedHeaders(headers))(router))

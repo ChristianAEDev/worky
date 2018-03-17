@@ -1,0 +1,8 @@
+port: 9090
+
+database:
+  # Database server. Port only needs to be set if not the default port.
+  host: "localhost"
+  name: "worky"
+  user: "root"
+  password: "my-secret-pw"

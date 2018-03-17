@@ -2,14 +2,30 @@ package db
 
 import (
 	"database/sql"
+	"strings"
+
+	"github.com/spf13/viper"
 
 	"github.com/ChristianAEDev/worky/server/data"
+	// Blank import since the mysql driver is compatible to the standard sql implementation
 	_ "github.com/go-sql-driver/mysql"
 	log "github.com/sirupsen/logrus"
 )
 
 func open() *sql.DB {
-	db, err := sql.Open("mysql", "root:my-secret-pw@/worky")
+	sb := strings.Builder{}
+
+	sb.WriteString(viper.GetString("database.user"))
+	sb.WriteString(":")
+	sb.WriteString(viper.GetString("database.password"))
+	sb.WriteString("@")
+	//sb.WriteString(viper.GetString("database.host"))
+	sb.WriteString("/")
+	sb.WriteString(viper.GetString("database.name"))
+
+	log.Info(sb.String())
+
+	db, err := sql.Open("mysql", sb.String())
 	if err != nil {
 		log.Error("Error connecting to database", err)
 	}
@@ -17,6 +33,7 @@ func open() *sql.DB {
 	return db
 }
 
+// LoadTasks loads all tasks stored in the database
 func LoadTasks() (tasks []data.Task) {
 	db := open()
 	defer db.Close()
