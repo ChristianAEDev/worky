@@ -3,6 +3,7 @@ image: ubuntu
 variables:
   GO_VERSION: "1.10"
   GO_PATH: "/build/go"
+  GO_PATH_SRC: $GO_PATH/src
   PROJECT_PATH: "gitlab.com/ChristianAEDev"
   GITLAB_WORK_DIR: "/builds/christian/worky"
 
