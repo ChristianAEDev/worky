@@ -23,6 +23,7 @@ before_script:
   - apt install build-essential -y
   - apt install git -y
   - apt install zip -y
+  - apt install tree -y
 # Install Go
   - wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
