@@ -23,6 +23,7 @@ build-linux:
 	mv server/worky $(output-linux)
 	# Compress the output to a release package
 	zip -r $(output-linux).zip $(output-linux)
+	tar -zcvf $(output-linux).tar.gz $(output-linux)
 	
 build-windows:
 	test -d $(output) || mkdir $(output)
@@ -43,4 +44,4 @@ build-windows:
 	mv server/worky.exe $(output-windows)
 	# Compress the output to a release package
 	zip -r $(output-windows).zip $(output-windows)
-	pwd
+	tar -zcvf $(output-windows).tar.gz $(output-windows)
