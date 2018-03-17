@@ -47,7 +47,7 @@ build:
   script: 
     - make build
     # Move the the GitLab default build folder. Only from there we can get the artifacts
-    - cp $GO_PATH/src/$PROJECT_PATH/worky/output $GITLAB_WORK_DIR
+    - cp -r $GO_PATH/src/$PROJECT_PATH/worky/output/* $GITLAB_WORK_DIR
     - tree $GITLAB_WORK_DIR
   artifacts:
     expire_in: 6 months
