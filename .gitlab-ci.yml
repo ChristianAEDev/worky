@@ -46,6 +46,7 @@ build:
   script: 
     - make build
   artifacts:
+    expire_in: 6 months
     paths:
     - $GO_PATH/src/$PROJECT_PATH/worky/output/linux.zip
     - $GO_PATH/src/$PROJECT_PATH/worky/output/windows.zip
