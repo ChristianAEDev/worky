@@ -11,7 +11,7 @@ variables:
 before_script:
   - cd ..
   - mkdir -p $GO_PATH_SRC/$PROJECT_PATH
-  - mv worky $GO_PATH/src/$PROJECT_PATH
+  - mv worky $GO_PATH_SRC/$PROJECT_PATH
   - cd $GO_PATH/src/$PROJECT_PATH/worky
   - mkdir -p $GITLAB_WORK_DIR
 # Install all tools needed for the build
@@ -22,7 +22,6 @@ before_script:
   - apt install build-essential -y
   - apt install git -y
   - apt install zip -y
-  - apt install tree -y
 # Install Go
   - wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
@@ -47,8 +46,7 @@ build:
   script: 
     - make build
     # Move the the GitLab default build folder. Only from there we can get the artifacts
-    - cp -r $GO_PATH/src/$PROJECT_PATH/worky/output/* $GITLAB_WORK_DIR
-    - tree $GITLAB_WORK_DIR
+    - cp -r $GO_PATH_SRC/$PROJECT_PATH/worky/output/* $GITLAB_WORK_DIR
   artifacts:
     expire_in: 6 months
     paths:
