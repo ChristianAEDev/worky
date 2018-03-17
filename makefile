@@ -22,7 +22,7 @@ build-linux:
 	# Copy Go server to output directory
 	mv server/worky $(output-linux)
 	# Compress the output to a release package
-	#zip -r $(output-linux).zip $(output-linux)
+	zip -r $(output-linux).zip $(output-linux)
 	
 build-windows:
 	test -d $(output) || mkdir $(output)
@@ -42,4 +42,4 @@ build-windows:
 	# Copy Go server to output directory
 	mv server/worky.exe $(output-windows)
 	# Compress the output to a release package
-	#zip -r $(output-windows).zip $(output-windows)
+	zip -r $(output-windows).zip $(output-windows)
