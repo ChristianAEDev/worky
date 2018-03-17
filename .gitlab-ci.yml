@@ -9,8 +9,8 @@ variables:
 
 # Used to install the needed software in the container
 before_script:
-  - mkdir -p $GO_PATH_SRC/$PROJECT_PATH/builds/christian/worky -p
   - cd ..
+  - mkdir -p $GO_PATH_SRC/$PROJECT_PATH
   - mv worky $GO_PATH/src/$PROJECT_PATH
   - cd $GO_PATH/src/$PROJECT_PATH/worky
   - mkdir -p $GITLAB_WORK_DIR
