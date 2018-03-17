@@ -53,5 +53,4 @@ build:
   artifacts:
     expire_in: 6 months
     paths:
-    - $GITLAB_WORK_DIR/output/linux.zip
-    - $GITLAB_WORK_DIR/output/windows.zip
+    - $GITLAB_WORK_DIR
