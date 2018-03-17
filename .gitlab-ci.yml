@@ -43,8 +43,9 @@ before_script:
   - apt install yarn -y
 
 build:
-  script: make build
+  script: 
+    - make build
   artifacts:
     paths:
-    - $GO_PATH/src/$PROJECT_PATH/worky/ouput/linux.zip
-    - $GO_PATH/src/$PROJECT_PATH/worky/ouput/windows.zip
+    - $GO_PATH/src/$PROJECT_PATH/worky/output/linux.zip
+    - $GO_PATH/src/$PROJECT_PATH/worky/output/windows.zip
