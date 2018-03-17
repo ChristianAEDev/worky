@@ -17,9 +17,9 @@ class TasksList extends Component {
 TasksList.propTypes = {
   loadTasks: PropTypes.func.isRequired,
   tasks: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    id: PropTypes.number,
+    title: PropTypes.string,
   }).isRequired,
 };
 
