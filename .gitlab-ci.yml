@@ -5,14 +5,13 @@ variables:
   GO_PATH: "/build/go"
   PROJECT_PATH: "gitlab.com/ChristianAEDev"
   GITLAB_WORK_DIR: "/builds/christian/worky"
-  
 
 # Used to install the needed software in the container
 before_script:
+  - mkdir -p $GO_PATH/src/$PROJECT_PATH/builds/christian/worky -p
   - cd ..
   - mv worky $GO_PATH/src/$PROJECT_PATH
   - cd $GO_PATH/src/$PROJECT_PATH/worky
-  # This is the "official" GitLab work dir. Here we will place the build in later.
   - mkdir -p $GITLAB_WORK_DIR
 # Install all tools needed for the build
   - apt update
@@ -22,6 +21,7 @@ before_script:
   - apt install build-essential -y
   - apt install git -y
   - apt install zip -y
+  - apt install tree -y
 # Install Go
   - wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
   - tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
@@ -47,6 +47,7 @@ build:
     - make build
     # Move the the GitLab default build folder. Only from there we can get the artifacts
     - cp -r $GO_PATH/src/$PROJECT_PATH/worky/output/* $GITLAB_WORK_DIR
+    - tree $GITLAB_WORK_DIR
   artifacts:
     expire_in: 6 months
     paths:
