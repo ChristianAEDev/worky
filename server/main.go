@@ -26,6 +26,8 @@ func main() {
 
 	methods := []string{"GET", "POST", "PUT", "DELETE"}
 	headers := []string{"Content-Type"}
+
+	log.Infof("Started on port %v\n", port)
 	// Startup the endpoint
 	http.ListenAndServe(":"+port,
 		handlers.CORS(handlers.AllowedMethods(methods), handlers.AllowedHeaders(headers))(router))
