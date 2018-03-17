@@ -43,3 +43,4 @@ build-windows:
 	mv server/worky.exe $(output-windows)
 	# Compress the output to a release package
 	zip -r $(output-windows).zip $(output-windows)
+	pwd
