@@ -9,7 +9,8 @@ variables:
 
 # Used to install the needed software in the container
 before_script:
-  - mv ../worky $GO_PATH/src/$PROJECT_PATH
+  - cd ..
+  - mv worky $GO_PATH/src/$PROJECT_PATH
   - cd $GO_PATH/src/$PROJECT_PATH/worky
   # This is the "official" GitLab work dir. Here we will place the build in later.
   - mkdir -p $GITLAB_WORK_DIR
