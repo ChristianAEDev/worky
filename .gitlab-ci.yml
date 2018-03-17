@@ -45,5 +45,5 @@ before_script:
 build:
   script: make build
   artifacts:
-  paths:
-  - $GO_PATH/src/$PROJECT_PATH/builds/christian/worky/ouput/
+    paths:
+    - $GO_PATH/src/$PROJECT_PATH/builds/christian/worky/ouput/
