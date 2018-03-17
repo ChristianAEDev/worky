@@ -3,7 +3,7 @@ image: ubuntu
 variables:
   GO_VERSION: "1.10"
   GO_PATH: "/build/go"
-  PROJECT_PATH: "/gitlab.com/ChristianAEDev"
+  PROJECT_PATH: "gitlab.com/ChristianAEDev"
 
 # Used to install the needed software in the container
 before_script:
@@ -46,4 +46,5 @@ build:
   script: make build
   artifacts:
     paths:
-    - $GO_PATH/src/$PROJECT_PATH/worky/ouput
+    - $GO_PATH/src/$PROJECT_PATH/worky/ouput/linux.zip
+    - $GO_PATH/src/$PROJECT_PATH/worky/ouput/windows.zip
