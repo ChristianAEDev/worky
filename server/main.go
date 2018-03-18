@@ -19,6 +19,8 @@ func init() {
 	}
 
 	viper.SetDefault("port", "8080")
+
+	log.SetFormatter(&log.JSONFormatter{})
 }
 
 func main() {
