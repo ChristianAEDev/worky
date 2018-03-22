@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'; // eslint-disable-line import/no-extraneous-dependencies
-
 import promise from 'redux-promise';
+
+import 'typeface-roboto'; // eslint-disable-line
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
