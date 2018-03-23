@@ -56,3 +56,20 @@ func LoadTasks() (tasks []data.Task) {
 
 	return tasks
 }
+
+func DeleteTask(taskID int) (err error) {
+	db := open()
+	defer db.Close()
+
+	prepStat, err := db.Prepare("DELETE FROM task WHERE id = ?")
+	if err != nil {
+		return err
+	}
+	defer prepStat.Close()
+
+	result, err := prepStat.Exec(taskID)
+
+	log.Info(result)
+
+	return nil
+}

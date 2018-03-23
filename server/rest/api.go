@@ -2,11 +2,30 @@ package rest
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/ChristianAEDev/worky/server/data"
 	"github.com/ChristianAEDev/worky/server/db"
 	log "github.com/sirupsen/logrus"
 )
+
+// DeleteTask removes a task from the database
+func DeleteTask(w http.ResponseWriter, r *http.Request) {
+	taskID, err := extractIDFromURL(r)
+	if err != nil {
+		respondWithError(w, err)
+	}
+	log.Infof("Delete task %v", taskID)
+
+	err = db.DeleteTask(taskID)
+	if err != nil {
+		respondWithError(w, err)
+	}
+
+	log.Infof("Deleted task %v", taskID)
+
+	w.Write([]byte(strconv.Itoa(taskID)))
+}
 
 // GetTasks loads all tasks from the database and sends them as a JSON to the caller.
 func GetTasks(w http.ResponseWriter, r *http.Request) {
