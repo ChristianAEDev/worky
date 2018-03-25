@@ -1,9 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { withStyles } from 'material-ui/styles';
-import PropTypes from 'prop-types';
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
 import TaskCard from './TaskCard';
 import { loadTasks } from '../actions';
 
@@ -15,8 +17,13 @@ class TaskList extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.container}>
-        <ul>{_.map(this.props.tasks, task => <TaskCard key={task.id} task={task} />)}</ul>
+      <div>
+        <div className={classes.container}>
+          <ul>{_.map(this.props.tasks, task => <TaskCard key={task.id} task={task} />)}</ul>
+        </div>
+        <Button variant="fab" className={classes.fab}>
+          <AddIcon />
+        </Button>
       </div>
     );
   }
@@ -31,15 +38,19 @@ TaskList.propTypes = {
     title: PropTypes.string,
   }).isRequired,
 };
-
-const styles = {
+const styles = theme => ({
   container: {
     'margin-top': '1em',
     'margin-bottom': '1em',
     'margin-left': '10px',
     'margin-right': '10px',
   },
-};
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
+  },
+});
 
 function mapStateToProps(state) {
   return {
