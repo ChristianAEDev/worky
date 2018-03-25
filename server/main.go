@@ -31,6 +31,7 @@ func main() {
 
 	// Register the routes Rest API
 	api.HandleFunc("/tasks", rest.GetTasks).Methods("GET")
+	api.HandleFunc("/tasks/{id:[0-9]+}", rest.GetTask).Methods("GET")
 	api.HandleFunc("/tasks/{id:[0-9]+}", rest.DeleteTask).Methods("DELETE")
 
 	// Host the front end

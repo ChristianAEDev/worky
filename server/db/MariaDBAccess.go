@@ -33,6 +33,31 @@ func open() *sql.DB {
 	return db
 }
 
+// LoadTask retrieves a single task identified by it's ID from the database
+func LoadTask(taskID int) (task data.Task, err error) {
+	db := open()
+	defer db.Close()
+
+	prepStat, err := db.Prepare("SELECT ID, Title, Description FROM task WHERE id = ?")
+	if err != nil {
+		return task, err
+	}
+	defer prepStat.Close()
+
+	rows, err := prepStat.Query(taskID)
+
+	if rows.Next() {
+		err := rows.Scan(&task.ID, &task.Title, &task.Description)
+		if err != nil {
+			log.Errorf("Error reading task %v from database", taskID, err)
+			return task, err
+		}
+	}
+
+	log.Infof("Selected task %v", task)
+	return task, nil
+}
+
 // LoadTasks loads all tasks stored in the database
 func LoadTasks() (tasks []data.Task) {
 	db := open()

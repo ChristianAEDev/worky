@@ -13,3 +13,7 @@ type Task struct {
 func ToJSON(tasks []Task) (tasksJSON []byte, err error) {
 	return json.Marshal(tasks)
 }
+
+func (task Task) ToJSON() (taskJSON []byte, err error) {
+	return json.Marshal(task)
+}
