@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import compose from 'recompose/compose';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
@@ -24,26 +25,31 @@ class Task extends Component {
     this.setState({ isEditMode: !this.state.isEditMode });
   };
 
+  handleSubmit = () => {
+    console.log('onSubmit');
+  };
+
   render() {
-    const { classes, task } = this.props;
     const { isEditMode } = this.state;
-    if (!task) {
-      return <div>Loading...</div>;
-    }
+    const { classes } = this.props;
     return (
-      <div>
-        <TextField id="title" label="Title" value={task.title} disabled={!isEditMode} fullWidth />
-        <TextField
-          id="description"
-          label="Description"
-          value={task.description}
-          disabled={!isEditMode}
-          fullWidth
+      <form onSubmit={this.handleSubmit}>
+        <Field
+          name="title"
+          component={({ input }) => (
+            <TextField {...input} label="Title" disabled={!isEditMode} fullWidth />
+          )}
         />
-        <Button variant="fab" className={classes.fab} onClick={this.onEdit}>
+        <Field
+          name="description"
+          component={({ input }) => (
+            <TextField {...input} label="Description" disabled={!isEditMode} fullWidth />
+          )}
+        />
+        <Button type="submit" variant="fab" className={classes.fab} onClick={this.onEdit}>
           {isEditMode ? <SaveIcon /> : <EditIcon />}
         </Button>
-      </div>
+      </form>
     );
   }
 }
@@ -56,11 +62,31 @@ const styles = theme => ({
   },
 });
 
+function validate(values) {
+  console.log(values);
+  const errors = {};
+
+  return errors;
+}
+
 function mapStateToProps(state, ownProps) {
   // Read task id from URL
   const { taskID } = ownProps.match.params;
+
+  if (taskID) {
+    // "initialValues" is used by redux-form to have the initial values...
+    const initialValues = _.find(state.tasks, ['id', parseInt(taskID, 10)]);
+    return {
+      initialValues,
+    };
+  }
+
   // Get the task from the redux store
-  return { task: _.find(state.tasks, ['id', parseInt(taskID, 10)]) };
+  return {};
 }
 
-export default compose(connect(mapStateToProps, { getTask }), withStyles(styles))(Task);
+export default compose(
+  connect(mapStateToProps, { getTask }),
+  withStyles(styles),
+  reduxForm({ validate, form: 'TaskForm' }),
+)(Task);

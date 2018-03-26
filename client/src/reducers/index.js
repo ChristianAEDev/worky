@@ -4,7 +4,8 @@ import TasksReducer from './TasksReducer';
 
 const rootReducer = combineReducers({
   tasks: TasksReducer,
-  task: formReducer,
+  // The name "form" has to be used. Otherwise redux-form will not work.
+  form: formReducer,
 });
 
 export default rootReducer;
